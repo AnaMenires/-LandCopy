@@ -1,20 +1,25 @@
 # ✨ LandCopy
 
-React • Vite • CSS Customizado • jsPDF • Phosphor Icons
+React • Vite • JavaScript • jsPDF • Phosphor Icons • CSS Customizado
+
+![Demonstração do LandCopy](./gif-project-landCopy.gif)
 
 ---
 
-**LandCopy** é uma aplicação desenvolvida com React que gera textos persuasivos para landing pages com base em briefings fornecidos pelo usuário. Criada para facilitar o processo criativo de quem trabalha com marketing, design ou desenvolvimento web.
+**LandCopy** é uma aplicação desenvolvida com React que gera textos persuasivos para landing pages com base em briefings fornecidos pelo usuário. 
 
-A ideia é transformar rapidamente informações básicas em seções prontas para sites — com possibilidade de copiar, regenerar e exportar em PDF.
+Ideal para profissionais de marketing, design e desenvolvimento web que desejam agilizar a produção de conteúdo de forma prática, criativa e eficiente.
+
+Com poucos cliques, o usuário transforma informações básicas em seções prontas para sites — com opções para copiar, regenerar ou exportar em PDF.
+
 
 ---
 
 ## 📌 Funcionalidades
 
 - ✅ Interface 100% responsiva (Mobile First)
-- ✅ Geração de conteúdo com base em briefing personalizado
-- ✅ Componentização com React
+- ✅ Geração de conteúdo com IA conectada à API do Gemini
+- ✅ Componentes reutilizáveis com React
 - ✅ Botões para copiar, regenerar e exportar em PDF
 - ✅ Ícones com Phosphor Icons
 - ✅ Estrutura modular e de fácil manutenção
@@ -27,6 +32,7 @@ A ideia é transformar rapidamente informações básicas em seções prontas pa
 - React
 - Vite
 - JavaScript (ES6+)
+- API Gemini (Google)
 - jsPDF
 - Phosphor Icons
 - CSS customizado
@@ -43,4 +49,4 @@ Você pode testar a aplicação aqui: 👉 [https://land-copy-ana-menires-projec
 ## 💡 Sobre o projeto
 
 Este projeto foi criado como uma solução prática para agilizar a criação de textos de landing pages, especialmente útil para freelancers, agências e criadores de conteúdo. O foco é oferecer uma ferramenta leve, eficiente e fácil de usar, com interface amigável e boas práticas de componentização em React.  
-Fez parte do meu portfólio como desenvolvedora front-end, unindo criatividade, automação e organização de código.
+Foi desenvolvido como parte do meu portfólio como desenvolvedora front-end, unindo minha experiência em marketing digital à paixão por programação e criação de interfaces inteligentes.

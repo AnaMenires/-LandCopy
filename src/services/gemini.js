@@ -4,6 +4,20 @@ const geminiClient = new GoogleGenerativeAI(
   import.meta.env.VITE_GEMINI_API_KEY
 );
 
+async function fetchWithRetry(model, prompt, retries = 3, delay = 2000) {
+  try {
+    const result = await model.generateContent(prompt);
+    return result;
+  } catch (err) {
+    if (retries > 0 && err.message.includes("503")) {
+      await new Promise((res) => setTimeout(res, delay));
+      return fetchWithRetry(model, prompt, retries - 1, delay * 2);
+    } else {
+      throw err;
+    }
+  }
+}
+
 function extractSection(text, section) {
   const regex = new RegExp(`::${section}::\\s*([\\s\\S]*?)(?=::|$)`, "i");
   const result = text.match(regex)?.[1]?.trim() ?? "";
@@ -30,9 +44,6 @@ Seu título chamativo
 ::subtitulo::
 Subtítulo explicativo e atrativo
 
-::cta::
-Chamada principal
-
 ::beneficios::
 - Benefício 1
 - Benefício 2
@@ -47,6 +58,7 @@ Mensagem final
 ::ctasalternativos::
 - Alternativa 1
 - Alternativa 2
+- Alternativa 3
 
 Geração aleatória: ${variacao}
 
@@ -59,15 +71,11 @@ Nome do projeto: ${nameProject}
 `;
 
   try {
-    const model = geminiClient.getGenerativeModel({
-      model: "gemini-1.5-flash",
-    });
+    const model = geminiClient.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const result = await fetchWithRetry(model, prompt);
+    const rawText = await result.response.text();
 
-    const result = await model.generateContent(prompt);
-    const response = result.response;
-    const rawText = await response.text();
-
-    const parsedResult = {
+    return {
       titulo: extractSection(rawText, "titulo"),
       subtitulo: extractSection(rawText, "subtitulo"),
       cta: extractSection(rawText, "cta"),
@@ -76,12 +84,8 @@ Nome do projeto: ${nameProject}
       rodape: extractSection(rawText, "rodape"),
       ctasAlternativos: extractSection(rawText, "ctasalternativos"),
     };
-
-    return parsedResult;
   } catch (error) {
     console.error("Erro ao buscar informações:", error);
-    throw new Error(
-      "Erro ao conectar com a IA. Verifique sua chave de API e tente novamente."
-    );
+    throw new Error("Erro ao conectar com a IA. Verifique sua chave de API e tente novamente.");
   }
 }
