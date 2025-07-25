@@ -41,7 +41,7 @@ Com poucos cliques, o usuário transforma informações básicas em seções pro
 
 ## 🌐 Link publicado
 
-Você pode testar a aplicação aqui: 👉 [https://land-copy-ana-menires-projects.vercel.app/]
+Você pode testar a aplicação aqui: 👉 [https://land-copy.vercel.app/]
 
 
 ---
